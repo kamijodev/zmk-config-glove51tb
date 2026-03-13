@@ -85,10 +85,10 @@
         default_layer {
             label = "DEFAULT";
             bindings = <
-&kp TAB         &kp Q  &kp W  &kp E  &kp R      &kp T                                           &kp Y        &kp U  &kp I      &kp O    &kp P        &kp BSPC
-&esc_lang2      &kp A  &kp S  &kp D  &kp F      &kp G      &trans                &trans         &kp H        &kp J  &kp K      &lt 4 L  &lt 5 COLON  &kp MINUS
-&kp LEFT_SHIFT  &kp Z  &kp X  &kp C  &kp V      &kp B      &kp N                 &kp RIGHT_ALT  &kp N        &kp M  &kp COMMA  &kp DOT  &kp FSLH     &kp EQUAL
-&none           &none  &none  &none  &kp LCTRL  &kp SPACE  &mt LEFT_SHIFT LANG2  &lt 2 LANG1    &lt 1 ENTER                             &kp LEFT     &kp RIGHT
+&kp TAB       &kp Q  &kp W  &kp E  &kp R      &kp T                                           &kp Y        &kp U  &kp I      &kp O    &kp P        &kp BSPC
+&esc_lang2    &kp A  &kp S  &kp D  &kp F      &kp G      &trans                &trans         &kp H        &kp J  &kp K      &lt 4 L  &lt 5 COLON  &kp MINUS
+&kp LEFT_WIN  &kp Z  &kp X  &kp C  &kp V      &kp B      &kp N                 &kp RIGHT_ALT  &kp N        &kp M  &kp COMMA  &kp DOT  &kp FSLH     &kp EQUAL
+&none         &none  &none  &none  &kp LCTRL  &kp SPACE  &mt LEFT_SHIFT LANG2  &lt 2 LANG1    &lt 1 ENTER                             &kp LEFT     &kp RIGHT
             >;
 
             sensor-bindings = <&mouse_wheel_scroll SCRL_UP SCRL_DOWN>;
@@ -131,7 +131,7 @@
             bindings = <
 &trans  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4                    &trans  &mkp MB4  &mkp MB5  &trans  &trans  &trans
 &trans  &trans        &trans        &trans        &trans        &trans          &trans  &trans  &trans  &mkp MB1  &mkp MB2  &trans  &trans  &trans
-&trans  &trans        &trans        &trans        &bt BT_CLR    &bt BT_CLR_ALL  &trans  &trans  &trans  &trans    &trans    &trans  &trans  &trans
+&trans  &trans        &trans        &trans        &bt BT_CLR    &bt BT_CLR_ALL  &trans  &trans  &trans  &mkp MB3  &trans    &trans  &trans  &trans
 &trans  &trans        &trans        &trans        &trans        &trans          &trans  &trans  &trans                              &trans  &trans
             >;
         };
