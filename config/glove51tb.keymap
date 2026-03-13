@@ -70,16 +70,25 @@
         };
     };
 
+    macros {
+        esc_lang2: esc_lang2 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LANG2 &kp ESCAPE>;
+            label = "ESC_LANG2";
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
         default_layer {
             label = "DEFAULT";
             bindings = <
-&kp ESC           &kp Q  &kp W             &kp E         &kp R         &kp T                                   &kp Y  &kp U  &kp I      &kp O    &kp P          &kp BSPC
-&kp TAB           &kp A  &kp S             &kp D         &kp F         &kp G      &trans     &trans            &kp H  &kp J  &kp K      &kp L    &kp SEMI       &kp RETURN
-&kp LEFT_SHIFT    &kp Z  &kp X             &kp C         &kp V         &kp B      &mo 5      &kp SINGLE_QUOTE  &kp N  &kp M  &kp COMMA  &kp DOT  &kp FSLH       &kp RIGHT_SHIFT
-&kp LEFT_CONTROL  &mo 2  &kp LEFT_CONTROL  &kp LEFT_ALT  &kp LEFT_GUI  &mkp LCLK  &kp SPACE  &kp SPACE         &mo 3                             &kp BACKSLASH  &trans
+&kp TAB         &kp Q  &kp W  &kp E  &kp R      &kp T                                                &kp Y        &kp U  &kp I      &kp O    &kp P         &kp BSPC
+&esc_lang2      &kp A  &kp S  &kp D  &kp F      &kp G      &trans                &trans              &kp H        &kp J  &kp K      &kp L    &kp LS(SEMI)  &kp MINUS
+&kp LEFT_SHIFT  &kp Z  &kp X  &kp C  &kp V      &kp B      &mo 5                 &kp SINGLE_QUOTE    &kp N        &kp M  &kp COMMA  &kp DOT  &kp FSLH      &kp EQUAL
+&none           &none  &none  &none  &kp LCTRL  &kp SPACE  &mt LEFT_SHIFT LANG2  &mt LEFT_ALT LANG1  &lt 3 ENTER                             &none         &none
             >;
 
             sensor-bindings = <&mouse_wheel_scroll SCRL_UP SCRL_DOWN>;
