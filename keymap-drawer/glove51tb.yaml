@@ -27,7 +27,7 @@ layers:
   - {t: L, h: MOUSE}
   - {t: ':', h: SCROLL}
   - '-'
-  - LEFT SHIFT
+  - LEFT WIN
   - Z
   - X
   - C
@@ -244,7 +244,7 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
+  - '&mkp MB3'
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
