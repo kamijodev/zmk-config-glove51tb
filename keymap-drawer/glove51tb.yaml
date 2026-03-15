@@ -24,8 +24,8 @@ layers:
   - H
   - J
   - K
-  - {t: L, h: SCROLL}
-  - ':'
+  - {t: L, h: MOUSE}
+  - {t: ':', h: SCROLL}
   - '-'
   - LEFT WIN
   - Z
@@ -33,8 +33,8 @@ layers:
   - C
   - V
   - B
-  - {t: DEFAULT, h: toggle}
-  - {t: MOUSE, h: toggle}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
   - N
   - M
   - ','
@@ -232,7 +232,7 @@ layers:
   - {t: ▽, type: trans}
   - '&mkp MB1'
   - '&mkp MB2'
-  - {t: ▽, type: trans}
+  - {type: held}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -284,8 +284,8 @@ layers:
   - {t: ▽, type: trans}
   - '&mkp LCLK'
   - '&mkp RCLK'
-  - {type: held}
   - {t: ▽, type: trans}
+  - {type: held}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
