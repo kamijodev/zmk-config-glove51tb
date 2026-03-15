@@ -41,6 +41,7 @@
             codes = <INPUT_REL_WHEEL>;
             track-remainders;
         };
+
         tb_y_scaler: tb_y_scaler {
             compatible = "zmk,input-processor-scaler";
             #input-processor-cells = <2>;
@@ -48,6 +49,7 @@
             codes = <INPUT_REL_X>;
             track-remainders;
         };
+
         tb_x_scaler: tb_x_scaler {
             compatible = "zmk,input-processor-scaler";
             #input-processor-cells = <2>;
@@ -153,10 +155,10 @@
         scroll_layer {
             label = "SCROLL";
             bindings = <
-&trans  &kp F1  &kp F2  &kp F3  &kp F4  &kp F5                  &kp F6   &kp F7   &kp F8  &kp F9  &kp F10  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &kp F11  &kp F12  &trans  &trans  &trans   &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans   &trans   &trans  &trans  &trans   &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans                            &trans   &trans
+&trans  &trans  &trans  &trans  &trans  &trans                  &trans  &mkp MB4   &mkp MB5   &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &mkp LCLK  &mkp RCLK  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &mkp MB3   &trans     &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans                                &trans  &trans
             >;
         };
     };
