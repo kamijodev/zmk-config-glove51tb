@@ -41,9 +41,9 @@ layers:
   - .
   - /
   - '='
+  - bluetooth
   - ''
-  - ''
-  - {t: bluetooth, h: toggle}
+  - {t: ▽, type: trans}
   - LEFT ALT
   - LCTRL
   - SPACE
@@ -197,7 +197,7 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
+  - {type: held}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
