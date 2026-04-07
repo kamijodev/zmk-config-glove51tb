@@ -44,11 +44,8 @@ static int rotate_handle_event(const struct device *dev, struct input_event *eve
     }
 
     if (event->code == config->x_code) {
-        /* DEBUG: output correction amount. Expected: ~-784 for Y=-28,k=28 → evtest ~-392 */
-        int32_t skew_factor = (int32_t)param1 + data->skew_offset;
-        event->value = skew_factor * data->last_y;
-    } else if (event->code == config->y_code) {
-        data->last_y = event->value;
+        /* DEBUG: output param1 directly. Expected evtest X = 28/2 = 14 */
+        event->value = (int32_t)param1;
     }
 
     return ZMK_INPUT_PROC_CONTINUE;
