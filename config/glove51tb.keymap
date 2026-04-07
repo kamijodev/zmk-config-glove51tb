@@ -64,7 +64,7 @@
             type = <INPUT_EV_REL>;
             x-code = <INPUT_REL_X>;
             y-code = <INPUT_REL_Y>;
-            skew-percent = <28>;
+            skew-percent = <32>;
             track-remainders;
         };
     };
