@@ -4,10 +4,7 @@
  * Corrects asymmetric axis crosstalk on trackball sensors where
  * vertical movement bleeds into the X axis but not vice versa.
  *
- * Applies shear correction:  x' = x - (k / 100) * y,  y' = y
- *
- * Since X events arrive before Y, the correction from Y is deferred
- * to the next frame. At typical polling rates this is imperceptible.
+ * Stores last Y value; on each X event, subtracts (k/100)*last_y.
  *
  * SPDX-License-Identifier: MIT
  */
@@ -32,7 +29,7 @@ struct rotate_config {
 
 struct rotate_data {
     int32_t skew_offset;
-    int32_t pending_x_correction;
+    int32_t last_y;
     int32_t remainder;
 };
 
@@ -47,11 +44,17 @@ static int rotate_handle_event(const struct device *dev, struct input_event *eve
     }
 
     if (event->code == config->x_code) {
-        /* DEBUG: test if pending persists across events */
-        int32_t numerator = (int32_t)event->value * SCALE + data->pending_x_correction;
+        int32_t skew_factor = (int32_t)param1 + data->skew_offset;
+        int32_t numerator = (int32_t)event->value * SCALE - skew_factor * data->last_y;
+        if (config->track_remainders) {
+            numerator += data->remainder;
+        }
         event->value = numerator / SCALE;
-        /* Set pending to fixed +500 → next X should be +5 */
-        data->pending_x_correction = 500;
+        if (config->track_remainders) {
+            data->remainder = numerator - event->value * SCALE;
+        }
+    } else if (event->code == config->y_code) {
+        data->last_y = event->value;
     }
 
     return ZMK_INPUT_PROC_CONTINUE;
