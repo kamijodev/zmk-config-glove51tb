@@ -44,10 +44,17 @@ static int rotate_handle_event(const struct device *dev, struct input_event *eve
     }
 
     if (event->code == config->x_code) {
-        /* DEBUG: output last_y instead of X. If Y handler works, X=25 (50/2 after scaler) */
-        event->value = data->last_y;
+        int32_t skew_factor = (int32_t)param1 + data->skew_offset;
+        int32_t numerator = (int32_t)event->value * SCALE + skew_factor * data->last_y;
+        if (config->track_remainders) {
+            numerator += data->remainder;
+        }
+        event->value = numerator / SCALE;
+        if (config->track_remainders) {
+            data->remainder = numerator - event->value * SCALE;
+        }
     } else if (event->code == config->y_code) {
-        data->last_y = 50;
+        data->last_y = event->value;
     }
 
     return ZMK_INPUT_PROC_CONTINUE;
