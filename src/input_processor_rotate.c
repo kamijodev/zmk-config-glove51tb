@@ -44,8 +44,8 @@ static int rotate_handle_event(const struct device *dev, struct input_event *eve
     }
 
     if (event->code == config->x_code) {
-        /* DEBUG: output param1 directly. Expected evtest X = 28/2 = 14 */
-        event->value = (int32_t)param1;
+        /* DEBUG: output param2. Maybe the cell value is in param2? */
+        event->value = (int32_t)param2;
     }
 
     return ZMK_INPUT_PROC_CONTINUE;
