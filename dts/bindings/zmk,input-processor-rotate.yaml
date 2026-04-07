@@ -1,0 +1,32 @@
+description: |
+  Rotation input processor that applies a 2D rotation matrix to correct
+  trackball sensor axis misalignment. The rotation angle is specified in
+  degrees via the input-processor cell parameter.
+
+compatible: "zmk,input-processor-rotate"
+
+include: [base.yaml]
+
+properties:
+  "#input-processor-cells":
+    type: int
+    required: true
+    const: 1
+  type:
+    type: int
+    required: true
+    description: Input event type to process (e.g. INPUT_EV_REL)
+  x-code:
+    type: int
+    required: true
+    description: Input event code for X axis (e.g. INPUT_REL_X)
+  y-code:
+    type: int
+    required: true
+    description: Input event code for Y axis (e.g. INPUT_REL_Y)
+  track-remainders:
+    type: boolean
+    description: Track fractional remainders across events for precision
+
+input-processor-cells:
+  - angle_deg

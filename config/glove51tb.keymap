@@ -57,6 +57,14 @@
             codes = <INPUT_REL_Y>;
             track-remainders;
         };
+        tb_rotator: tb_rotator {
+            compatible = "zmk,input-processor-rotate";
+            #input-processor-cells = <1>;
+            type = <INPUT_EV_REL>;
+            x-code = <INPUT_REL_X>;
+            y-code = <INPUT_REL_Y>;
+            track-remainders;
+        };
     };
 };
 
@@ -75,6 +83,12 @@
             compatible = "zmk,behavior-sensor-rotate-var";
             #sensor-binding-cells = <2>;
             bindings = <&kp>, <&kp>;
+        };
+
+        tb_rotate_adjust: tb_rotate_adjust {
+            compatible = "zmk,behavior-rotate-adjust";
+            #binding-cells = <1>;
+            processor = <&tb_rotator>;
         };
 
         mouse_wheel_scroll: mouse_wheel_scroll {
