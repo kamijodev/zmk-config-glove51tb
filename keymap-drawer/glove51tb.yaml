@@ -313,5 +313,11 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
 combos:
-- p: [35, 36]
-  k: SCROLL
+- p: [7, 8, 9]
+  k: '&tb_rot_inc'
+- p: [2, 3, 4]
+  k: '&tb_rot_dec'
+- p: [7, 8, 9, 10]
+  k: '&bootloader'
+- p: [1, 2, 3, 4]
+  k: '&bootloader'
