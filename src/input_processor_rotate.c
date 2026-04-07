@@ -47,15 +47,8 @@ static int rotate_handle_event(const struct device *dev, struct input_event *eve
     }
 
     if (event->code == config->x_code) {
-        /* x' = x + pending correction from previous Y event */
-        int32_t numerator = (int32_t)event->value * SCALE + data->pending_x_correction;
-        if (config->track_remainders) {
-            numerator += data->remainder;
-        }
-        event->value = numerator / SCALE;
-        if (config->track_remainders) {
-            data->remainder = numerator - event->value * SCALE;
-        }
+        /* DEBUG: zero out X to verify processor is called */
+        event->value = 0;
         data->pending_x_correction = 0;
 
     } else if (event->code == config->y_code) {
