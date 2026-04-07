@@ -7,3 +7,4 @@ endif()
 if(CONFIG_ZMK_BEHAVIOR_ROTATE_ADJUST)
   target_sources(app PRIVATE src/behavior_rotate_adjust.c)
 endif()
+

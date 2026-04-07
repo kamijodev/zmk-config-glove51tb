@@ -114,7 +114,6 @@
             processor = <&tb_rotator>;
             step = <(-1)>;
         };
-
         mouse_wheel_scroll: mouse_wheel_scroll {
             compatible = "zmk,behavior-sensor-rotate-var";
             #sensor-binding-cells = <2>;
