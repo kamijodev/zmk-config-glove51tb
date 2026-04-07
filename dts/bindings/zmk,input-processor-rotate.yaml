@@ -1,8 +1,6 @@
 description: |
   Skew compensation input processor for trackball sensors.
   Corrects Y-to-X axis crosstalk by subtracting a fraction of Y from X.
-  The cell parameter is the compensation factor as a percentage
-  (e.g. 28 means subtract 28% of Y from X).
 
 compatible: "zmk,input-processor-rotate"
 
@@ -12,22 +10,19 @@ properties:
   "#input-processor-cells":
     type: int
     required: true
-    const: 1
+    const: 0
   type:
     type: int
     required: true
-    description: Input event type to process (e.g. INPUT_EV_REL)
   x-code:
     type: int
     required: true
-    description: Input event code for X axis (e.g. INPUT_REL_X)
   y-code:
     type: int
     required: true
-    description: Input event code for Y axis (e.g. INPUT_REL_Y)
+  skew-percent:
+    type: int
+    required: true
+    description: Compensation factor as percentage (e.g. 28 = subtract 28% of Y from X)
   track-remainders:
     type: boolean
-    description: Track fractional remainders across events for precision
-
-input-processor-cells:
-  - skew_percent

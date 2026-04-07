@@ -60,10 +60,11 @@
 
         tb_rotator: tb_rotator {
             compatible = "zmk,input-processor-rotate";
-            #input-processor-cells = <1>;
+            #input-processor-cells = <0>;
             type = <INPUT_EV_REL>;
             x-code = <INPUT_REL_X>;
             y-code = <INPUT_REL_Y>;
+            skew-percent = <28>;
             track-remainders;
         };
     };

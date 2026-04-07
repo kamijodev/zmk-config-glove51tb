@@ -4,8 +4,6 @@
  * Corrects asymmetric axis crosstalk on trackball sensors where
  * vertical movement bleeds into the X axis but not vice versa.
  *
- * Stores last Y value; on each X event, subtracts (k/100)*last_y.
- *
  * SPDX-License-Identifier: MIT
  */
 
@@ -24,6 +22,7 @@ struct rotate_config {
     uint8_t type;
     uint16_t x_code;
     uint16_t y_code;
+    int32_t skew_percent;
     bool track_remainders;
 };
 
@@ -44,8 +43,17 @@ static int rotate_handle_event(const struct device *dev, struct input_event *eve
     }
 
     if (event->code == config->x_code) {
-        /* DEBUG: output param2. Maybe the cell value is in param2? */
-        event->value = (int32_t)param2;
+        int32_t skew_factor = config->skew_percent + data->skew_offset;
+        int32_t numerator = (int32_t)event->value * SCALE + skew_factor * data->last_y;
+        if (config->track_remainders) {
+            numerator += data->remainder;
+        }
+        event->value = numerator / SCALE;
+        if (config->track_remainders) {
+            data->remainder = numerator - event->value * SCALE;
+        }
+    } else if (event->code == config->y_code) {
+        data->last_y = event->value;
     }
 
     return ZMK_INPUT_PROC_CONTINUE;
@@ -58,7 +66,7 @@ static const struct zmk_input_processor_driver_api rotate_driver_api = {
 void zmk_input_processor_rotate_adjust_angle(const struct device *dev, int32_t delta) {
     struct rotate_data *data = dev->data;
     data->skew_offset += delta;
-    LOG_INF("Skew factor offset: %d (effective = param + %d)", data->skew_offset, data->skew_offset);
+    LOG_INF("Skew offset: %d", data->skew_offset);
 }
 
 int32_t zmk_input_processor_rotate_get_angle(const struct device *dev) {
@@ -72,6 +80,7 @@ int32_t zmk_input_processor_rotate_get_angle(const struct device *dev) {
         .type = DT_INST_PROP(n, type),                                                             \
         .x_code = DT_INST_PROP(n, x_code),                                                        \
         .y_code = DT_INST_PROP(n, y_code),                                                         \
+        .skew_percent = DT_INST_PROP(n, skew_percent),                                             \
         .track_remainders = DT_INST_PROP(n, track_remainders),                                     \
     };                                                                                             \
     DEVICE_DT_INST_DEFINE(n, NULL, NULL, &rotate_data_##n, &rotate_config_##n, POST_KERNEL,        \
