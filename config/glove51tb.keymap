@@ -73,16 +73,6 @@
     combos {
         compatible = "zmk,combos";
 
-        tb_inc {
-            bindings = <&tb_rot_inc>;
-            key-positions = <7 8 9>;
-        };
-
-        tb_dec {
-            bindings = <&tb_rot_dec>;
-            key-positions = <2 3 4>;
-        };
-
         boot_r {
             bindings = <&bootloader>;
             key-positions = <7 8 9 10>;
@@ -114,6 +104,7 @@
             processor = <&tb_rotator>;
             step = <(-1)>;
         };
+
         mouse_wheel_scroll: mouse_wheel_scroll {
             compatible = "zmk,behavior-sensor-rotate-var";
             #sensor-binding-cells = <2>;
