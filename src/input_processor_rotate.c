@@ -61,7 +61,7 @@ static int rotate_handle_event(const struct device *dev, struct input_event *eve
     } else if (event->code == config->y_code) {
         /* Compute X correction for next frame: +k * y (undo negative drift) */
         int32_t skew_factor = (int32_t)param1 + data->skew_offset;
-        data->pending_x_correction = skew_factor * event->value;
+        data->pending_x_correction = -skew_factor * event->value;
         /* Y passes through unchanged */
     }
 
