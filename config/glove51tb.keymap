@@ -57,6 +57,7 @@
             codes = <INPUT_REL_Y>;
             track-remainders;
         };
+
         tb_rotator: tb_rotator {
             compatible = "zmk,input-processor-rotate";
             #input-processor-cells = <1>;
@@ -72,9 +73,24 @@
     combos {
         compatible = "zmk,combos";
 
-        scroll {
-            bindings = <&mo 5>;
-            key-positions = <35 36>;
+        tb_inc {
+            bindings = <&tb_rot_inc>;
+            key-positions = <7 8 9>;
+        };
+
+        tb_dec {
+            bindings = <&tb_rot_dec>;
+            key-positions = <2 3 4>;
+        };
+
+        boot_r {
+            bindings = <&bootloader>;
+            key-positions = <7 8 9 10>;
+        };
+
+        boot_l {
+            bindings = <&bootloader>;
+            key-positions = <1 2 3 4>;
         };
     };
 
@@ -91,6 +107,7 @@
             processor = <&tb_rotator>;
             step = <1>;
         };
+
         tb_rot_dec: tb_rot_dec {
             compatible = "zmk,behavior-rotate-adjust";
             #binding-cells = <0>;
