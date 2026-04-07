@@ -1,13 +1,18 @@
 description: |
   Behavior to adjust the rotation angle of an input-processor-rotate
-  at runtime. The binding cell specifies the step in degrees.
+  at runtime. Use step property to set the increment (positive) or
+  decrement (negative) in degrees.
 
 compatible: "zmk,behavior-rotate-adjust"
 
-include: [one_param.yaml]
+include: [zero_param.yaml]
 
 properties:
   processor:
     type: phandle
     required: true
     description: Reference to the input-processor-rotate device to adjust
+  step:
+    type: int
+    required: true
+    description: Angle adjustment step in degrees (e.g. 1 or -1)

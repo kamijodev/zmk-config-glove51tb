@@ -85,10 +85,17 @@
             bindings = <&kp>, <&kp>;
         };
 
-        tb_rotate_adjust: tb_rotate_adjust {
+        tb_rot_inc: tb_rot_inc {
             compatible = "zmk,behavior-rotate-adjust";
-            #binding-cells = <1>;
+            #binding-cells = <0>;
             processor = <&tb_rotator>;
+            step = <1>;
+        };
+        tb_rot_dec: tb_rot_dec {
+            compatible = "zmk,behavior-rotate-adjust";
+            #binding-cells = <0>;
+            processor = <&tb_rotator>;
+            step = <(-1)>;
         };
 
         mouse_wheel_scroll: mouse_wheel_scroll {

@@ -2,7 +2,7 @@
  * ZMK Behavior: Rotate Adjust
  *
  * Adjusts the rotation angle of an input-processor-rotate at runtime.
- * Bind to keys to increment/decrement the correction angle.
+ * Two zero-param behaviors (inc / dec) for keymap editor compatibility.
  *
  * SPDX-License-Identifier: MIT
  */
@@ -18,14 +18,14 @@
 
 struct rotate_adjust_config {
     const struct device *processor;
+    int32_t step;
 };
 
 static int on_keymap_binding_pressed(struct zmk_behavior_binding *binding,
                                      struct zmk_behavior_binding_event event) {
     const struct device *dev = zmk_behavior_get_binding(binding->behavior_dev);
     const struct rotate_adjust_config *config = dev->config;
-    int32_t step = (int32_t)binding->param1;
-    zmk_input_processor_rotate_adjust_angle(config->processor, step);
+    zmk_input_processor_rotate_adjust_angle(config->processor, config->step);
     return ZMK_BEHAVIOR_OPAQUE;
 }
 
@@ -42,6 +42,7 @@ static const struct behavior_driver_api rotate_adjust_behavior_api = {
 #define ROTATE_ADJUST_INST(n)                                                                      \
     static const struct rotate_adjust_config rotate_adjust_config_##n = {                          \
         .processor = DEVICE_DT_GET(DT_INST_PHANDLE(n, processor)),                                 \
+        .step = DT_INST_PROP(n, step),                                                             \
     };                                                                                             \
     BEHAVIOR_DT_INST_DEFINE(n, NULL, NULL, NULL, &rotate_adjust_config_##n, POST_KERNEL,           \
                             CONFIG_KERNEL_INIT_PRIORITY_DEFAULT, &rotate_adjust_behavior_api);
