@@ -1,9 +1,0 @@
-config ZMK_INPUT_PROCESSOR_ROTATE
-    bool "Rotation input processor for trackball axis correction"
-    default y
-    depends on ZMK_POINTING
-
-config ZMK_BEHAVIOR_ROTATE_ADJUST
-    bool "Behavior to adjust rotation angle at runtime"
-    default y
-    depends on ZMK_INPUT_PROCESSOR_ROTATE
